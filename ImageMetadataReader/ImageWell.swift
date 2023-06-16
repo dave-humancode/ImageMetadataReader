@@ -10,6 +10,7 @@ import UIKit
 import UniformTypeIdentifiers
 
 class ImageWell: UIView {
+    static let cornerRadius = 24.0
 
     // Image well
 
@@ -63,6 +64,9 @@ class ImageWell: UIView {
     // MARK: - Implementation
 
     private func _init() {
+        self.layer.cornerRadius = ImageWell.cornerRadius
+        self.clipsToBounds = true
+
         label.text = "Drop or paste images here"
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubviewToFit(label, padding: ImageWell.padding)
@@ -102,7 +106,8 @@ class ImageWell: UIView {
             let gc = UIGraphicsGetCurrentContext()!
             let insetAmount = ImageWell.lineThickness / 2.0
             let pathRect = bounds.inset(by: UIEdgeInsets(top: insetAmount, left: insetAmount, bottom: insetAmount, right: insetAmount))
-            let path = CGPath(roundedRect: pathRect, cornerWidth: ImageWell.lineThickness, cornerHeight: ImageWell.lineThickness, transform: nil)
+            let cornerRadius = ImageWell.cornerRadius - ImageWell.lineThickness / 2.0
+            let path = CGPath(roundedRect: pathRect, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
             gc.setStrokeColor(lineColor.cgColor)
             gc.setLineWidth(ImageWell.lineThickness)
             gc.setLineDash(phase: 0, lengths: [15.0, 5.0])
@@ -152,7 +157,7 @@ class ImageWell: UIView {
                 _ = ip.loadFileRepresentation(for: oipType, openInPlace: true) {
                     URL, isInPlace, error in
                     if let URL, let image = UIImage(contentsOf: URL) {
-                        var comment: String? = URL.extendedAttributeObject(name: "com.apple.metadata:kMDItemFinderComment")
+                        let comment: String? = URL.extendedAttributeObject(name: "com.apple.metadata:kMDItemFinderComment")
                         completionHandler(image, comment)
                     } else {
                         completionHandler(nil, nil)

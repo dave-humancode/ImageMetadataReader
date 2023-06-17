@@ -92,6 +92,9 @@ class ImageWell: UIView {
 
         let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
         self.addInteraction(contextMenuInteraction)
+
+        let dragInteraction = UIDragInteraction(delegate: self)
+        self.addInteraction(dragInteraction)
     }
 
     override init(frame: CGRect) {
@@ -203,5 +206,17 @@ extension ImageWell: UIContextMenuInteractionDelegate
         return UIContextMenuConfiguration(actionProvider:  { elements in
             return UIMenu(children: elements)
         })
+    }
+}
+
+// Drag
+extension ImageWell: UIDragInteractionDelegate
+{
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        if let image {
+            return [UIDragItem(itemProvider: NSItemProvider(object: image))]
+        } else {
+            return []
+        }
     }
 }

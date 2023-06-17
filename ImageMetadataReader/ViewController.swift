@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         _ = imageViewer.imageWell.becomeFirstResponder()
+
+        title = "Caption-reading image well"
     }
 }
 

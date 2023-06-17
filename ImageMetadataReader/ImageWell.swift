@@ -14,6 +14,7 @@ class ImageWell: UIView {
 
     // Image well
 
+    @Published
     var image: UIImage? {
         didSet {
             let imageView = UIImageView(image: image)
@@ -59,11 +60,13 @@ class ImageWell: UIView {
 
     // Comments
 
+    @Published
     var comment: String?
 
     // MARK: - Implementation
 
     private func _init() {
+        self.backgroundColor = UIColor.systemBackground
         self.layer.cornerRadius = ImageWell.cornerRadius
         self.clipsToBounds = true
 
@@ -173,30 +176,6 @@ class ImageWell: UIView {
                     }
                 }
             }
-        }
-    }
-}
-
-extension UIView {
-    func addSubviewToFit(_ view: UIView, padding: CGFloat) {
-        addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: padding),
-            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: padding),
-        ])
-    }
-}
-
-extension UIImage {
-    convenience init?(contentsOf URL: URL) {
-        do {
-            let data = try Data(contentsOf: URL)
-            self.init(data: data)
-        } catch {
-            return nil
         }
     }
 }

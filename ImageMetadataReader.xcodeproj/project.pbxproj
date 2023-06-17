@@ -15,6 +15,9 @@
 		08792D562A3CD5EC00AE1A2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08792D542A3CD5EC00AE1A2B /* LaunchScreen.storyboard */; };
 		08792D602A3CD60D00AE1A2B /* ImageWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08792D5F2A3CD60D00AE1A2B /* ImageWell.swift */; };
 		08792D622A3CF4CE00AE1A2B /* URL+xattr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08792D612A3CF4CE00AE1A2B /* URL+xattr.swift */; };
+		08792D642A3D031E00AE1A2B /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08792D632A3D031E00AE1A2B /* ImageViewer.swift */; };
+		08792D662A3D046400AE1A2B /* UIViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08792D652A3D046400AE1A2B /* UIViewUtilities.swift */; };
+		08792D682A3D047700AE1A2B /* UIImageUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08792D672A3D047700AE1A2B /* UIImageUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		08792D572A3CD5EC00AE1A2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08792D5F2A3CD60D00AE1A2B /* ImageWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWell.swift; sourceTree = "<group>"; };
 		08792D612A3CF4CE00AE1A2B /* URL+xattr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+xattr.swift"; sourceTree = "<group>"; };
+		08792D632A3D031E00AE1A2B /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		08792D652A3D046400AE1A2B /* UIViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUtilities.swift; sourceTree = "<group>"; };
+		08792D672A3D047700AE1A2B /* UIImageUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +70,10 @@
 				08792D4B2A3CD5EB00AE1A2B /* SceneDelegate.swift */,
 				08792D4D2A3CD5EB00AE1A2B /* ViewController.swift */,
 				08792D5F2A3CD60D00AE1A2B /* ImageWell.swift */,
+				08792D632A3D031E00AE1A2B /* ImageViewer.swift */,
 				08792D612A3CF4CE00AE1A2B /* URL+xattr.swift */,
+				08792D652A3D046400AE1A2B /* UIViewUtilities.swift */,
+				08792D672A3D047700AE1A2B /* UIImageUtilities.swift */,
 				08792D4F2A3CD5EB00AE1A2B /* Main.storyboard */,
 				08792D522A3CD5EC00AE1A2B /* Assets.xcassets */,
 				08792D542A3CD5EC00AE1A2B /* LaunchScreen.storyboard */,
@@ -144,10 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08792D662A3D046400AE1A2B /* UIViewUtilities.swift in Sources */,
 				08792D622A3CF4CE00AE1A2B /* URL+xattr.swift in Sources */,
 				08792D4E2A3CD5EB00AE1A2B /* ViewController.swift in Sources */,
 				08792D602A3CD60D00AE1A2B /* ImageWell.swift in Sources */,
+				08792D642A3D031E00AE1A2B /* ImageViewer.swift in Sources */,
 				08792D4A2A3CD5EB00AE1A2B /* AppDelegate.swift in Sources */,
+				08792D682A3D047700AE1A2B /* UIImageUtilities.swift in Sources */,
 				08792D4C2A3CD5EB00AE1A2B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

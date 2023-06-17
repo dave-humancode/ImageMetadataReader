@@ -17,11 +17,11 @@ extension URL {
             if (length > 0) {
                 // Create buffer
                 var buffer = Data(count: length)
-                let result = buffer.withUnsafeMutableBytes { bytes in
-                    return getxattr(path, name, bytes, length, 0, 0)
-                }
-                if result == -1 {
-                    throw POSIXError(POSIXError.Code(rawValue: errno)!)
+                try buffer.withUnsafeMutableBytes { ptr in
+                    let bytes = ptr.bindMemory(to: UInt8.self).baseAddress
+                    if -1 == getxattr(path, name, bytes, length, 0, 0) {
+                        throw POSIXError(POSIXError.Code(rawValue: errno)!)
+                    }
                 }
                 retval = buffer
             }

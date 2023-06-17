@@ -141,7 +141,7 @@ class ImageWell: UIView {
     override var canBecomeFirstResponder: Bool { get { true }}
     override var canBecomeFocused: Bool { get { true }}
 
-    @IBAction func tapped(_ sender: AnyObject) {
+    @IBAction func tapped(_ sender: Any?) {
         _ = becomeFirstResponder()
     }
 
@@ -155,6 +155,19 @@ class ImageWell: UIView {
         let retval = super.resignFirstResponder()
         setNeedsDisplay()
         return retval
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        switch action {
+        case #selector(delete(_:)):
+            return (self.image != nil)
+        default:
+            return super.canPerformAction(action, withSender: sender)
+        }
+    }
+
+    override func delete(_ sender: Any?) {
+        self.image = nil
     }
 
     // MARK: Paste/drop
@@ -202,9 +215,22 @@ class ImageWell: UIView {
 // Context menus
 extension ImageWell: UIContextMenuInteractionDelegate
 {
+    private static let contextMenuIdentifier = UIMenu.Identifier(rawValue: "context")
+
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(actionProvider:  { elements in
-            return UIMenu(children: elements)
+            if let editMenu = elements.first as? UIMenu {
+                var editMenuChildren = editMenu.children
+                editMenuChildren.append(
+                    UICommand(title: "Delete", action: #selector(self.delete(_:)))
+                )
+                let newMenu = editMenu.replacingChildren(editMenuChildren)
+                var newElements = elements
+                newElements[0] = newMenu
+                return UIMenu(children: newElements)
+            } else {
+                return UIMenu(children: elements)
+            }
         })
     }
 }

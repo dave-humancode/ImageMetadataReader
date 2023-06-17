@@ -17,8 +17,15 @@ class ImageWell: UIView {
     @Published
     var image: UIImage? {
         didSet {
-            let imageView = UIImageView(image: image)
-            self.imageView = imageView
+            if let image {
+                let imageView = UIImageView(image: image)
+                self.imageView = imageView
+                // Make image available for copying
+                activityItemsConfiguration = UIActivityItemsConfiguration(objects: [image])
+            } else {
+                self.imageView = nil
+                activityItemsConfiguration = nil
+            }
         }
     }
 
@@ -63,7 +70,7 @@ class ImageWell: UIView {
     @Published
     var comment: String?
 
-    // MARK: - Implementation
+    // MARK: Initialization
 
     private func _init() {
         self.backgroundColor = UIColor.systemBackground
@@ -82,6 +89,9 @@ class ImageWell: UIView {
         addGestureRecognizer(tapGR)
 
         pasteConfiguration = UIPasteConfiguration(forAccepting: UIImage.self)
+
+        let contextMenuInteraction = UIContextMenuInteraction(delegate: self)
+        self.addInteraction(contextMenuInteraction)
     }
 
     override init(frame: CGRect) {
@@ -98,7 +108,11 @@ class ImageWell: UIView {
         _init()
     }
 
+    // MARK: Layout
+
     override var intrinsicContentSize: CGSize { get { CGSize(width: 300.0, height: 300.0) }}
+
+    // MARK: Drawing
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle, compatibleWith: traitCollection)
@@ -119,6 +133,8 @@ class ImageWell: UIView {
         }
     }
 
+    // MARK: Event handling
+
     override var canBecomeFirstResponder: Bool { get { true }}
     override var canBecomeFocused: Bool { get { true }}
 
@@ -138,7 +154,7 @@ class ImageWell: UIView {
         return retval
     }
 
-    // MARK: - Paste/drop handling
+    // MARK: Paste/drop
 
     override func paste(itemProviders: [NSItemProvider]) {
         if let ip = itemProviders.first,
@@ -177,5 +193,15 @@ class ImageWell: UIView {
                 }
             }
         }
+    }
+}
+
+// Context menus
+extension ImageWell: UIContextMenuInteractionDelegate
+{
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(actionProvider:  { elements in
+            return UIMenu(children: elements)
+        })
     }
 }

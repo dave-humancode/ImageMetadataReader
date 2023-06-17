@@ -28,6 +28,9 @@
                             <constraint firstItem="lJM-fd-udc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="j7c-GS-T1E"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageViewer" destination="lJM-fd-udc" id="OSb-6N-UNq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

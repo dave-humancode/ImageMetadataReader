@@ -35,6 +35,7 @@
 		08792D652A3D046400AE1A2B /* UIViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUtilities.swift; sourceTree = "<group>"; };
 		08792D672A3D047700AE1A2B /* UIImageUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageUtilities.swift; sourceTree = "<group>"; };
 		08792D692A3D3A2300AE1A2B /* ImageMetadataReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImageMetadataReader.entitlements; sourceTree = "<group>"; };
+		08792D6A2A3D633B00AE1A2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 		08792D3D2A3CD5EB00AE1A2B = {
 			isa = PBXGroup;
 			children = (
+				08792D6A2A3D633B00AE1A2B /* README.md */,
 				08792D482A3CD5EB00AE1A2B /* ImageMetadataReader */,
 				08792D472A3CD5EB00AE1A2B /* Products */,
 			);

@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 extension UIView {
+    /// Add a subview so that it tracks the receiver's bounds, inset by some
+    /// padding amount.
     func addSubviewToFit(_ view: UIView, padding: CGFloat) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false

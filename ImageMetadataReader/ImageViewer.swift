@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
+/// An image well paired with a caption viewer
 class ImageViewer: UIView {
     let imageWell: ImageWell
     let captionView: UILabel

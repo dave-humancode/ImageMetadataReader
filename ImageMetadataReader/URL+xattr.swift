@@ -30,6 +30,7 @@ extension URL {
         return data
     }
 
+    /// Retrieve an xattr which is stored as a plist
     func extendedAttributeObject<T: Decodable>(name: String) -> T? {
         var retval: T? = nil
         do {

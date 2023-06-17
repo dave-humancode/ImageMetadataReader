@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 class ImageWell: UIView {
     static let cornerRadius = 24.0
 
-    // Image well
+    // Image and image view state
 
     @Published
     var image: UIImage? {
@@ -188,7 +188,7 @@ class ImageWell: UIView {
             // the origin of the drop is a file.
             let oipTypes = ip.registeredContentTypesForOpenInPlace
             if let oipType = oipTypes.first {
-                // Open in place is available. The first type is usually the best
+                // Open in place is available. The first type is the native file type.
                 _ = ip.loadFileRepresentation(for: oipType, openInPlace: true) {
                     URL, isInPlace, error in
                     if let URL, let image = UIImage(contentsOf: URL) {
@@ -212,7 +212,7 @@ class ImageWell: UIView {
     }
 }
 
-// Context menus
+// Context menu
 extension ImageWell: UIContextMenuInteractionDelegate
 {
     private static let contextMenuIdentifier = UIMenu.Identifier(rawValue: "context")

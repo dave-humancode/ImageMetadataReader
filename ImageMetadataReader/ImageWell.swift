@@ -191,11 +191,19 @@ class ImageWell: UIView {
                 // Open in place is available. The first type is the native file type.
                 _ = ip.loadFileRepresentation(for: oipType, openInPlace: true) {
                     URL, isInPlace, error in
-                    if let URL, let image = UIImage(contentsOf: URL) {
-                        let comment: String? = URL.extendedAttributeObject(name: "com.apple.metadata:kMDItemFinderComment")
-                        completionHandler(image, comment)
-                    } else {
-                        completionHandler(nil, nil)
+                    if let URL {
+                        var retvalImage: UIImage?  = nil
+                        var retvalComment: String? = nil
+                        var error: NSError? = nil
+                        NSFileCoordinator().coordinate(readingItemAt: URL, error: &error) { actualURL in
+                            if let image = UIImage(contentsOf: actualURL) {
+                                retvalImage = image
+                                if let comment: String? = actualURL.extendedAttributeObject(name: "com.apple.metadata:kMDItemFinderComment") {
+                                    retvalComment = comment
+                                }
+                            }
+                        }
+                        completionHandler(retvalImage, retvalComment)
                     }
                 }
             } else {
